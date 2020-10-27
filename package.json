@@ -1,0 +1,24 @@
+{
+  "name": "node-mongoose",
+  "version": "1.0.0",
+  "description": "Simple practice with node and mongoose",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JhonathanMusa/node-mongoose.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JhonathanMusa/node-mongoose/issues"
+  },
+  "homepage": "https://github.com/JhonathanMusa/node-mongoose#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.11"
+  }
+}
