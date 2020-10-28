@@ -17,6 +17,12 @@ mongoose.connect(url, {
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 
+app.use(require("./src/routes/index"));
+
+app.get("/", (req, res) => {
+  res.send("Welcome to index page");
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
