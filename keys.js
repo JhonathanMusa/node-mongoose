@@ -1,3 +1,3 @@
 module.exports = {
-    MONGOURI: "mongodb://localhost:27017"
+    MONGOURI: "mongodb://localhost:27017/movies"
 }
