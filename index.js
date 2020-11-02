@@ -1,37 +1,26 @@
 const express = require("express");
-const app = express();
-const bodyparser = require("body-parser");
 const mongoose = require("mongoose");
-const { Schema } = mongoose.Schema();
-
+const { MONGOURI } = require("./keys");
+const app = express();
 const PORT = 8080;
-const url = "mongodb://localhost/moviesDB";
 
-// mongoose connection
-mongoose.Promise = global.Promise;
-mongoose.connect(url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+// connection to mongo
+mongoose.connect(MONGOURI, { useUnifiedTopology: true, useNewUrlParser: true });
+
+mongoose.connection.on("connected", (err) => {
+  if (err) {
+    resizeBy.json(err);
+  }
+  console.log("Connected to MongoDB");
 });
 
-// bodyparser
-app.use(bodyparser.urlencoded({ extended: true }));
-app.use(bodyparser.json());
+// Models import
+require("./models/movie")
 
-// Schema
-const movieSchema = Schema({
-  title: String,
-  year: Number,
-  genre: String,
-});
 
-const movie = mongoose.model("movie", movieSchema);
+app.use(express.json());
 
-// app.use(require("./src/routes/index"));
-
-app.get("/", (req, res) => {
-  res.send("Welcome to index page");
-});
+app.use(require("./routes/movie"))
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
