@@ -20,6 +20,10 @@ require("./models/genre");
 
 app.use(express.json());
 
+app.get("/", (req, res)=> {
+  res.send("Welcome to the application, go at /movies")
+})
+
 app.use(require("./routes/movie"));
 app.use(require("./routes/genre"));
 

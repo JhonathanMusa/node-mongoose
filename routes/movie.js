@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const Movie = mongoose.model("Movie");
 const Genre = mongoose.model("Genre");
 
+
 router.get("/movies", (req, res) => {
   Movie.find()
     .populate("genre", "_id name")
