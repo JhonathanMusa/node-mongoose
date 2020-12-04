@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const { MONGOURI } = require("./keys");
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 3000;
 
 // connection to mongo
 mongoose.connect(MONGOURI, { useUnifiedTopology: true, useNewUrlParser: true });
@@ -20,9 +20,9 @@ require("./models/genre");
 
 app.use(express.json());
 
-app.get("/", (req, res)=> {
-  res.send("Welcome to the application, go at /movies")
-})
+app.get("/", (req, res) => {
+  res.send("Welcome to the application, go at /movies");
+});
 
 app.use(require("./routes/movie"));
 app.use(require("./routes/genre"));
