@@ -1,6 +1,6 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const { MONGOURI } = require("./keys");
+import express from "express";
+import mongoose from "mongoose";
+import { MONGOURI } from "./keys";
 const app = express();
 const PORT = process.env.PORT || 3000;
 

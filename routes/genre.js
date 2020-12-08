@@ -1,6 +1,6 @@
-const { Router } = require("express");
+import { Router } from "express";
 const router = Router();
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const Genre = mongoose.model("Genre");
 
 router.get("/genres", (req, res) => {
