@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import { MONGOURI } from "./keys";
+import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -19,7 +20,7 @@ require("./models/movie");
 require("./models/genre");
 
 app.use(express.json());
-
+app.use(cors());
 app.get("/", (req, res) => {
   res.send("Welcome to the application, go at /movies");
 });
