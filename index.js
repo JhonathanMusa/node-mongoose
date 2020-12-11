@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import { MONGOURI } from "./keys";
 import cors from "cors";
+import history from "connect-history-api-fallback";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -20,10 +21,13 @@ require("./models/movie");
 require("./models/genre");
 
 app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.get("/", (req, res) => {
   res.send("Welcome to the application, go at /movies");
 });
+
+app.use(history());
 
 app.use(require("./routes/movie"));
 app.use(require("./routes/genre"));
