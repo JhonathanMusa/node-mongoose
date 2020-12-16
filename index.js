@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import { MONGOURI } from "./keys";
 import cors from "cors";
-import history from "connect-history-api-fallback";
+import path from "path"
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -18,7 +18,7 @@ mongoose.connection.on("connected", (err) => {
 
 // Models import
 require("./models/movie");
-require("./models/genre");
+// require("./models/genre");
 
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
@@ -28,9 +28,11 @@ app.get("/", (req, res) => {
 });
 
 app.use(history());
+const history = require("connect-history-api-fallback");
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(require("./routes/movie"));
-app.use(require("./routes/genre"));
+// app.use(require("./routes/genre"));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

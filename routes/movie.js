@@ -2,12 +2,11 @@ import { Router } from "express";
 const router = Router();
 import mongoose from "mongoose";
 const Movie = mongoose.model("Movie");
-const Genre = mongoose.model("Genre");
+// const Genre = mongoose.model("Genre");
 
 
 router.get("/movies", (req, res) => {
   Movie.find()
-    .populate("genre", "_id name")
     .then((movies) => {
       res.json({ movies });
     })
@@ -17,19 +16,18 @@ router.get("/movies", (req, res) => {
 });
 
 router.post("/new-movie", (req, res) => {
-  const { title, description, year, genre } = req.body;
+  const { title, description, year } = req.body;
 
-  if (!title || !year || !description || !genre) {
+  if (!title || !year || !description) {
     res.json({ err: "All fields are required" });
   }
 
-  Genre.findOne({ _id: genre.id })
+  /* Genre.findOne({ _id: genre.id })
     .then((gen) => {
       const movie = new Movie({
         title,
         year,
-        description,
-        genre: gen,
+        description
       });
 
       movie
@@ -37,13 +35,13 @@ router.post("/new-movie", (req, res) => {
         .then(() => {
           res.json({ msg: "Movie Inserted" });
         })
-        .catch((err) => {});
+        .catch((err) => { });
     })
     .catch((err) => {
       console.log(err);
-    });
+    }); */
 
-  /*   const movie = new Movie({
+  const movie = new Movie({
     title,
     description,
     year,
@@ -56,7 +54,7 @@ router.post("/new-movie", (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-    }); */
+    });
 });
 
 module.exports = router;

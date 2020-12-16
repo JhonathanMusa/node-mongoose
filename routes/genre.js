@@ -1,4 +1,4 @@
-import { Router } from "express";
+/* import { Router } from "express";
 const router = Router();
 import mongoose from "mongoose";
 const Genre = mongoose.model("Genre");
@@ -35,3 +35,4 @@ router.post("/new-genre", (req, res) => {
 });
 
 module.exports = router;
+ */

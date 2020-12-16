@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+/* import mongoose from "mongoose";
 
 const genre = mongoose.Schema({
   name: {
@@ -8,3 +8,4 @@ const genre = mongoose.Schema({
 });
 
 mongoose.model("Genre", genre);
+ */

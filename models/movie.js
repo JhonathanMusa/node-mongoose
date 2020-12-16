@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const { ObjectId } = mongoose.Schema.Types;
+// const { ObjectId } = mongoose.Schema.Types;
 
 const movie = mongoose.Schema({
   title: {
@@ -14,10 +14,10 @@ const movie = mongoose.Schema({
     type: Number,
     required: true,
   },
-  genre: {
-    type: ObjectId,
-    ref: "Genre",
-  },
+  /*  genre: {
+     type: ObjectId,
+     ref: "Genre",
+   }, */
 });
 
 mongoose.model("Movie", movie);
