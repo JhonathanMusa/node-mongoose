@@ -1,60 +1,34 @@
-import { Router } from "express";
-const router = Router();
+import express from "express";
+const router = express.Router();
 import mongoose from "mongoose";
-const Movie = mongoose.model("Movie");
 // const Genre = mongoose.model("Genre");
 
+import Movie from "../models/movie"
 
-router.get("/movies", (req, res) => {
-  Movie.find()
-    .then((movies) => {
-      res.json({ movies });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+router.get("/movies", async (req, res) => {
+  try {
+    const moviesDB = await Movie.find()
+    res.json(moviesDB);
+  } catch (error) {
+    return res.status(400)
+      .json({
+        mensaje: "Ocurrio un error", error
+      })
+  }
 });
 
-router.post("/new-movie", (req, res) => {
-  const { title, description, year } = req.body;
+router.post("/new-movie", async (req, res) => {
+  const body = req.body;
 
-  if (!title || !year || !description) {
-    res.json({ err: "All fields are required" });
+  try {
+    const moviesDB = await Movie.create(body)
+    res.status(200).json(moviesDB)
+
+  } catch (error) {
+    return res.status(500).json({
+      mensaje: "Ocurrio un error", error
+    })
   }
-
-  /* Genre.findOne({ _id: genre.id })
-    .then((gen) => {
-      const movie = new Movie({
-        title,
-        year,
-        description
-      });
-
-      movie
-        .save()
-        .then(() => {
-          res.json({ msg: "Movie Inserted" });
-        })
-        .catch((err) => { });
-    })
-    .catch((err) => {
-      console.log(err);
-    }); */
-
-  const movie = new Movie({
-    title,
-    description,
-    year,
-  });
-
-  movie
-    .save()
-    .then(() => {
-      res.json({ msg: "Movie Inserted" });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 });
 
 module.exports = router;
