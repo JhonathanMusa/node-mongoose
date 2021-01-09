@@ -5,7 +5,6 @@ import cors from "cors";
 import morgan from "morgan"
 import path from "path"
 
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -19,9 +18,6 @@ mongoose.connection.on("connected", (err) => {
   console.log("Connected to MongoDB");
 });
 
-app.get("/", (req, res) => {
-  res.send("Welcome to the application, go at /movies");
-});
 
 app.use(morgan("tiny"))
 app.use(cors());
