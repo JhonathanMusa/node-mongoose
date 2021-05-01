@@ -1,2 +1,2 @@
 # node-mongoose
-Practice with node, express and mongoose
+Practice with node, express and mongoDB
